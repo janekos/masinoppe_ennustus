@@ -1,5 +1,7 @@
 package root.analyzer;
 
 public class AnalyzerMain {
-	//Takes in an ---- instance
+	
+	//TODO text conversion and prediction makers main
+	
 }

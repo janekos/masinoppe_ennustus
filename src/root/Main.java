@@ -1,11 +1,12 @@
 package root;
 
-import root.online.OnlineMain;
+import root.online.Requests;
 
 public class Main {
 
 	public static void main(String[] args) {
-		OnlineMain om = new OnlineMain();
 		
+		Requests.initServer(); //starts api	
+	
 	}
 }

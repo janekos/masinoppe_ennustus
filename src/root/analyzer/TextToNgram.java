@@ -1,5 +1,5 @@
 package root.analyzer;
 
 public class TextToNgram {
-	//TODO
+	//TODO here text will be converted to ngrams
 }
