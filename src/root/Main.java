@@ -1,10 +1,11 @@
 package root;
 
-//import root.online.*;
+import root.online.OnlineMain;
 
 public class Main {
 
 	public static void main(String[] args) {
-		//TO-DO
+		OnlineMain om = new OnlineMain();
+		
 	}
 }
