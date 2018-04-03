@@ -8,13 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-
 public class TextToNgram {
 
-	public static String[] createNgrams(int ngramLen, String text) {
+	public String[] createNgrams(int ngramLen, String text) {
 		
 		String[] wordTypes = getWordTypesFromText(text);
 		List<String> ngramsList = new ArrayList<String>();
@@ -35,7 +31,7 @@ public class TextToNgram {
 		return ngramsArray;
 	}
 
-	public static String[] getWordTypesFromText(String text){
+	public String[] getWordTypesFromText(String text){
 
 		String[] wordTypes = null;
 		String s = null;
@@ -51,10 +47,8 @@ public class TextToNgram {
 			
 			s = stdInput.readLine();
 			if(!s.equals("ErrNo1")) {
-				//s = s.replace("[", "").replace("]", "").replace(" ", "").replace("'", "").replaceAll(regex, replacement);
 				s = s.replaceAll("[\\[\\] ']", "").replaceAll("(\\|)(.)", ""); //sometimes estnltk return something like A|B. this cleans that out and keeps the first one.
 				wordTypes = s.split(",");
-				System.out.println("wordTypes: " + Arrays.toString(wordTypes));
 			}
 			/*while ((s = stdInput.readLine()) != null) {
 				//implement writing into wordTypes list

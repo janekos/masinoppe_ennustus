@@ -2,6 +2,11 @@ package root.analyzer;
 
 public class AnalyzerMain {
 	
-	//TODO text conversion and prediction makers main
+	private TextToNgram ttn = new TextToNgram();
+	private GetPrediction gp = new GetPrediction();
+	
+	public void getPrediction(String text) {
+		gp.predict(ttn.createNgrams(3, text), "");
+	}
 	
 }
