@@ -22,8 +22,11 @@ public class TextToNgram {
 		for(int i = 1; i < wordTypes.length - (ngramLen - 2); i++ ) {
 			String ngram = "";
 
-			for(int j = -1; j < ngramLen-2; j++) { ngram += wordTypes[i+j]; }
-
+			for(int j = -1; j < ngramLen-1; j++) {
+				//System.out.println(j);
+				ngram += wordTypes[i+j];
+			}
+			
 			ngramsList.add(ngram);
 		}
 		
@@ -48,8 +51,10 @@ public class TextToNgram {
 			
 			s = stdInput.readLine();
 			if(!s.equals("ErrNo1")) {
-				s = s.replace("[", "").replace("]", "").replace(" ", "");
+				//s = s.replace("[", "").replace("]", "").replace(" ", "").replace("'", "").replaceAll(regex, replacement);
+				s = s.replaceAll("[\\[\\] ']", "").replaceAll("(\\|)(.)", ""); //sometimes estnltk return something like A|B. this cleans that out and keeps the first one.
 				wordTypes = s.split(",");
+				System.out.println("wordTypes: " + Arrays.toString(wordTypes));
 			}
 			/*while ((s = stdInput.readLine()) != null) {
 				//implement writing into wordTypes list
