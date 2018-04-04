@@ -6,7 +6,11 @@ public class AnalyzerMain {
 	private GetPrediction gp = new GetPrediction();
 	
 	public void getPrediction(String text) {
-		gp.predict(ttn.createNgrams(3, text), "");
+		gp.predict(getNgramString(text) , "");
+	}
+	
+	public String getNgramString(String text) {
+		return ttn.createNgrams(3, text);
 	}
 	
 }

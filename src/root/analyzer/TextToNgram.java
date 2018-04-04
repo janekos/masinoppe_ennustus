@@ -10,10 +10,10 @@ import java.util.List;
 
 public class TextToNgram {
 
-	public String[] createNgrams(int ngramLen, String text) {
+	public String createNgrams(int ngramLen, String text) {
 		
 		String[] wordTypes = getWordTypesFromText(text);
-		List<String> ngramsList = new ArrayList<String>();
+		String ngramsString = "";
 
 		for(int i = 1; i < wordTypes.length - (ngramLen - 2); i++ ) {
 			String ngram = "";
@@ -23,12 +23,10 @@ public class TextToNgram {
 				ngram += wordTypes[i+j];
 			}
 			
-			ngramsList.add(ngram);
+			ngramsString += ngram;
 		}
 		
-		String[] ngramsArray = ngramsList.toArray(new String[ngramsList.size()]);
-		
-		return ngramsArray;
+		return ngramsString;
 	}
 
 	public String[] getWordTypesFromText(String text){
