@@ -4,11 +4,11 @@ import static spark.Spark.*;
 
 import java.util.Arrays;
 
-import root.analyzer.AnalyzerMain;
+import root.analyzer.Analyzer;
 
 public class Requests {
 	
-	private static AnalyzerMain am = new AnalyzerMain();
+	private static Analyzer am = new Analyzer();
 	
 	public static void initServer() {
 		
