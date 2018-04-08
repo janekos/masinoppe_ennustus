@@ -15,14 +15,16 @@ public class CreateDataToPredict {
 		
 		Instances data;
 		ArrayList<Attribute> attributes;
-		ArrayList<String> keeletaseAttr = null;
+		ArrayList<String> keeletaseAttr = new ArrayList<String>();
 		double[] vars;
 		String[] keeletasemed = {"A","A1","A2","B","B1","B2","C","C1","C2"};
 		
 		attributes = new ArrayList<Attribute>();
 		attributes.add(new Attribute("tekst", (ArrayList<String>) null));
 		
-		for(int i = 0; i < keeletasemed.length; i++) { keeletaseAttr.add(keeletasemed[i]); }
+		for(int i = 0; i < keeletasemed.length; i++) { 
+			keeletaseAttr.add(keeletasemed[i]);
+		}
 		attributes.add(new Attribute("keeletase", keeletaseAttr));
 		
 		data = new Instances("ToPredict", attributes, 0);
@@ -33,7 +35,7 @@ public class CreateDataToPredict {
 		
 		data.add(new DenseInstance(1.0, vars));
 		
-		System.out.println(data);
+		data.setClassIndex(data.numAttributes() - 1);
 		
 		return data.firstInstance();
 	}

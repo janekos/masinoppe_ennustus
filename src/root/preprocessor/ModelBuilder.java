@@ -2,6 +2,9 @@ package root.preprocessor;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import weka.attributeSelection.AttributeSelection;
 import weka.classifiers.functions.MultilayerPerceptron;
@@ -13,8 +16,13 @@ import weka.core.Utils;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
+
+
 public class ModelBuilder {
 	public static int buildModel(String trainingDataPath, String modelPath, boolean timeStamp) {
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
 		
 		// https://forums.pentaho.com/threads/97648-Attribute-selection-followed-by-classification-in-weka-explorer/
 		// https://stackoverflow.com/questions/28940110/how-can-i-use-my-text-classifier-in-practice-as-of-getting-the-tf-idf-values-of
@@ -23,12 +31,12 @@ public class ModelBuilder {
 			
 			if(modelPath.equals("")) { modelPath = "file.model"; }
 			
-			System.out.println("Starting classifier build");
+			System.out.println("[" + dateFormat.format(new Date()) + "]" + " Starting classifier build.");
 			
 			BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + trainingDataPath));
 			Instances trainingData = new Instances(reader);
 			reader.close();
-			System.out.println("Got data.");
+			System.out.println("[" + dateFormat.format(new Date()) + "]" + " Got data.");
 			
 			//select which attribtue is model going to be predicting. here its selecting the last column
 			trainingData.setClassIndex(trainingData.numAttributes() - 1);
@@ -41,23 +49,23 @@ public class ModelBuilder {
 			filter.setWordsToKeep(10000);
 			filter.setLowerCaseTokens(true);
 			filter.setInputFormat(trainingData);
-			System.out.println("Filter set.");
+			System.out.println("[" + dateFormat.format(new Date()) + "]" + " Filter set.");
 			
 			MultilayerPerceptron mlp = new MultilayerPerceptron();
-			mlp.setHiddenLayers("o");
-			mlp.setLearningRate(0.5);
-			mlp.setMomentum(0.2);
+			mlp.setHiddenLayers("2");
+			mlp.setLearningRate(0.2);
+			mlp.setMomentum(0.3);
 			mlp.setTrainingTime(500);
-			System.out.println("Classifier set.");
+			System.out.println("[" + dateFormat.format(new Date()) + "]" + " Classifier set.");
 			
 			FilteredClassifier fc = new FilteredClassifier();			
 			fc.setClassifier(mlp);
 			fc.setFilter(filter);
 			
-			System.out.println("Building classifier.");
+			System.out.println("[" + dateFormat.format(new Date()) + "]" + " Building classifier.");
 			fc.buildClassifier(trainingData);
 			
-			System.out.println("Classifier built!");
+			System.out.println("[" + dateFormat.format(new Date()) + "]" + " Classifier built!");
 			
 			SerializationHelper.write(modelPath, fc);
 			System.out.println("Classifier model written. File: "+ modelPath);
