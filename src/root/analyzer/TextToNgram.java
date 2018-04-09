@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 
 public class TextToNgram {
 
-	public String createNgrams(int ngramLen, String text) {
+	public String createNgrams(String text) {
+		
+		int ngramLen = 3;
 		
 		String[] wordTypes = getWordTypesFromText(text);
 		String ngramsString = "";
@@ -31,10 +33,10 @@ public class TextToNgram {
 		String[] wordTypes = null;
 		String s = null;
 		
-		//https://alvinalexander.com/java/edu/pj/pj010016
+		// https://alvinalexander.com/java/edu/pj/pj010016
 		try {
 			Process p = null;
-			ProcessBuilder pb = new ProcessBuilder("python","text_to_postag.py","\""+text+"\"");
+			ProcessBuilder pb = new ProcessBuilder("python","scripts/py/text_to_postag.py","\""+text+"\"");
 			pb.directory(new File(System.getProperty("user.dir")));
 			p = pb.start();
 			
@@ -45,16 +47,6 @@ public class TextToNgram {
 				s = s.replaceAll("[\\[\\] ']", "").replaceAll("(\\|)(.)", ""); //sometimes estnltk return something like A|B. this cleans that out and keeps the first one.
 				wordTypes = s.split(",");
 			}
-			/*while ((s = stdInput.readLine()) != null) {
-				//implement writing into wordTypes list
-				System.out.println(s);
-			}*/
-			
-			/*BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-			
-			while ((s = stdError.readLine()) != null) {
-                System.out.println(s);
-            }*/
 			
 		} catch (IOException e) { System.out.println(e); }
 

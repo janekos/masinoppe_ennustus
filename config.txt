@@ -1,0 +1,13 @@
+attributeIndices = first-last
+outputWordCounts = true
+normalizeAttributes = false
+trainingData = arff/keeletase_ja_ngramid.arff
+idf = true
+hiddenLayers = 7
+learningRate = 0.3
+momentum = 0.2
+wordsToKeep = 10000
+tf = true
+lowerCaseTokens = true
+trainingTime = 500
+activeModel = models/file.model
