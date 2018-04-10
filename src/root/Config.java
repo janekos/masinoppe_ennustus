@@ -19,7 +19,7 @@ public class Config {
 	private static String hiddenLayers = "7";
 	private static double learningRate = 0.3;
 	private static boolean normalizeAttributes = false;
-	private static String trainingData = "arff/keeletase_ja_ngramid.arff";
+	private static String trainingData = "/arff/keeletase_ja_ngramid.arff";
 	
 	// getters
 	public static boolean isTf() {                  return tf;}
@@ -37,18 +37,18 @@ public class Config {
 	public static boolean isNormalizeAttributes() { return normalizeAttributes;}
 	
 	// setters
-	public static void setActiveModel(String activeModel) {                 Config.activeModel = activeModel;                                       ConfigIO.writeConfig(true);}
-	public static void setTrainingData(String trainingData) {               Config.trainingData = trainingData;                                     ConfigIO.writeConfig(true);}
-	public static void setHiddenLayers(String hiddenLayers) {               Config.hiddenLayers = hiddenLayers;                                     ConfigIO.writeConfig(true);}
 	public static void setTf(String tf) {                                   Config.tf = Boolean.parseBoolean(tf);                                   ConfigIO.writeConfig(true);}
 	public static void setIdf(String idf) {                                 Config.idf = Boolean.parseBoolean(idf);                                 ConfigIO.writeConfig(true);}
-	public static void setAttributeIndices(String attributeIndices) {       Config.attributeIndices = attributeIndices;                             ConfigIO.writeConfig(true);}
 	public static void setMomentum(String momentum) {                       Config.momentum = Double.parseDouble(momentum);                         ConfigIO.writeConfig(true);}
 	public static void setWordsToKeep(String wordsToKeep) {                 Config.wordsToKeep = Integer.parseInt(wordsToKeep);                     ConfigIO.writeConfig(true);}
+	public static void setActiveModel(String activeModel) {                 Config.activeModel = activeModel;                                       ConfigIO.writeConfig(true);}
+	public static void setTrainingData(String trainingData) {               Config.trainingData = "/arff/"+trainingData;                             ConfigIO.writeConfig(true);}
+	public static void setHiddenLayers(String hiddenLayers) {               Config.hiddenLayers = hiddenLayers;                                     ConfigIO.writeConfig(true);}
 	public static void setTrainingTime(String trainingTime) {               Config.trainingTime = Integer.parseInt(trainingTime);                   ConfigIO.writeConfig(true);}
 	public static void setLearningRate(String learningRate) {               Config.learningRate = Double.parseDouble(learningRate);                 ConfigIO.writeConfig(true);}
 	public static void setLowerCaseTokens(String lowerCaseTokens) {         Config.lowerCaseTokens = Boolean.parseBoolean(lowerCaseTokens);         ConfigIO.writeConfig(true);}
 	public static void setOutputWordCounts(String outputWordCounts) {       Config.outputWordCounts = Boolean.parseBoolean(outputWordCounts);       ConfigIO.writeConfig(true);}
+	public static void setAttributeIndices(String attributeIndices) {       Config.attributeIndices = attributeIndices;                             ConfigIO.writeConfig(true);}
 	public static void setNormalizeAttributes(String normalizeAttributes) { Config.normalizeAttributes = Boolean.parseBoolean(normalizeAttributes); ConfigIO.writeConfig(true);}
 
 }

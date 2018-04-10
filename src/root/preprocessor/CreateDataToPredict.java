@@ -17,7 +17,7 @@ public class CreateDataToPredict {
 		ArrayList<Attribute> attributes;
 		ArrayList<String> keeletaseAttr = new ArrayList<String>();
 		double[] vars;
-		String[] keeletasemed = {"A","A1","A2","B","B1","B2","C","C1","C2"};
+		String[] keeletasemed = {"A2","B1","B2","C1"};
 		
 		attributes = new ArrayList<Attribute>();
 		attributes.add(new Attribute("tekst", (ArrayList<String>) null));

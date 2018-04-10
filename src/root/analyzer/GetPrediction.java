@@ -16,7 +16,7 @@ public class GetPrediction {
 		String predictionStr = "<pre>";
 		
 		try {
-			Classifier cls = (Classifier) SerializationHelper.read(Config.getActiveModel());
+			Classifier cls = (Classifier) SerializationHelper.read(System.getProperty("user.dir") + Config.getActiveModel());
 			Instance testInstance = CreateDataToPredict.createData(text);
 
 			double[] prediction = cls.distributionForInstance(testInstance);

@@ -13,19 +13,20 @@ public class ConfigIO {
 	
 	public static void updateMap() {
 		
-		allData.put("activeModel", Config.getActiveModel());
 		allData.put("tf", Boolean.toString(Config.isTf()));
+		allData.put("activeModel", Config.getActiveModel());
 		allData.put("idf", Boolean.toString(Config.isIdf()));
+		allData.put("hiddenLayers", Config.getHiddenLayers());
+		allData.put("trainingData", Config.getTrainingData());
+		allData.put("attributeIndices", Config.getAttributeIndices());
+		allData.put("momentum", Double.toString(Config.getMomentum()));
+		allData.put("wordsToKeep", Integer.toString(Config.getWordsToKeep()));
+		allData.put("learningRate", Double.toString(Config.getLearningRate()));
+		allData.put("trainingTime", Integer.toString(Config.getTrainingTime()));
 		allData.put("lowerCaseTokens", Boolean.toString(Config.isLowerCaseTokens()));
 		allData.put("outputWordCounts", Boolean.toString(Config.isOutputWordCounts()));
-		allData.put("attributeIndices", Config.getAttributeIndices());
-		allData.put("wordsToKeep", Integer.toString(Config.getWordsToKeep()));
-		allData.put("trainingTime", Integer.toString(Config.getTrainingTime()));
-		allData.put("hiddenLayers", Config.getHiddenLayers());
 		allData.put("normalizeAttributes", Boolean.toString(Config.isNormalizeAttributes()));
-		allData.put("learningRate", Double.toString(Config.getLearningRate()));
-		allData.put("momentum", Double.toString(Config.getMomentum()));
-		allData.put("trainingData", Config.getTrainingData());
+		
 	}
 	
 	public static void writeConfig(boolean call) {

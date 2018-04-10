@@ -1,7 +1,7 @@
 attributeIndices = first-last
 outputWordCounts = true
+trainingData = /arff//neli_keeletaset_ngramidega.arff
 normalizeAttributes = false
-trainingData = arff/keeletase_ja_ngramid.arff
 idf = true
 hiddenLayers = 7
 learningRate = 0.3
@@ -9,5 +9,5 @@ momentum = 0.2
 wordsToKeep = 10000
 tf = true
 lowerCaseTokens = true
-trainingTime = 500
+trainingTime = 1000
 activeModel = models/file.model
