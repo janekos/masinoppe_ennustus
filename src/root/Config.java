@@ -42,7 +42,7 @@ public class Config {
 	public static void setMomentum(String momentum) {                       Config.momentum = Double.parseDouble(momentum);                         ConfigIO.writeConfig(true);}
 	public static void setWordsToKeep(String wordsToKeep) {                 Config.wordsToKeep = Integer.parseInt(wordsToKeep);                     ConfigIO.writeConfig(true);}
 	public static void setActiveModel(String activeModel) {                 Config.activeModel = activeModel;                                       ConfigIO.writeConfig(true);}
-	public static void setTrainingData(String trainingData) {               Config.trainingData = "/arff/"+trainingData;                             ConfigIO.writeConfig(true);}
+	public static void setTrainingData(String trainingData) {               Config.trainingData = trainingData;                                     ConfigIO.writeConfig(true);}
 	public static void setHiddenLayers(String hiddenLayers) {               Config.hiddenLayers = hiddenLayers;                                     ConfigIO.writeConfig(true);}
 	public static void setTrainingTime(String trainingTime) {               Config.trainingTime = Integer.parseInt(trainingTime);                   ConfigIO.writeConfig(true);}
 	public static void setLearningRate(String learningRate) {               Config.learningRate = Double.parseDouble(learningRate);                 ConfigIO.writeConfig(true);}
