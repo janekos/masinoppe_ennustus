@@ -22,8 +22,10 @@ public class TextToNgram {
 				ngram += wordTypes[i+j];
 			}
 			
-			ngramsString += ngram;
+			ngramsString += ngram + " ";
 		}
+		
+		ngramsString = ngramsString.substring(0, ngramsString.length() - 1); // takes the lase space away from ngramsString
 		
 		return ngramsString;
 	}

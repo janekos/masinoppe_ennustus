@@ -1,6 +1,10 @@
 package root;
 
 import root.online.Requests;
+import root.preprocessor.ModelBuilder;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import root.analyzer.Analyzer;
 
@@ -9,12 +13,47 @@ public class Main {
 	public static void main(String[] args) {
 		
 		ConfigIO.readConfig();
-		Requests.initServer(); //starts api	
 		
-		//Analyzer.getPrediction("Tallinna Ülikooli eesti vahekeele korpus (EVKK) on eesti keele kui riigikeele (teise keele) ja võõrkeele õppijate kirjalike tekstide kogu. EVKK-s on rida alamkorpusi, kasutajaliides, mitmetasandiline annoteerimis- ja märgendussüsteem, statistikamoodul, tekstide automaatanalüüsi võimalused jm. Kombineerides erinevaid alamkorpusi, tekstilisi tunnuseid, vealiike ja metateavet õppija kohta, võimaldab korpuse kasutajaliides teostada mitmetasandilist otsingut. \r\nKorpust saab kasutada empiirilises ja rakenduslikku laadi uurimistöös; tulevaste õpetajate ja lingvistide koolitamisel; tegevõpetajate täiendõppes jm. ");
-		
-		
-		//ModelBuilder.writeModel("/keeletase_tekstiga.arff", "", false);
+		if(args.length != 0) {
+			switch(args[0]) {
+				case "-a": 
+					System.out.println("API mode selected. Starting server.");
+					Requests.initServer();
+					break;
+				case "-m":
+					System.out.println("Model building mode selected.");
+					
+					if(args.length == 1) {
+						System.out.println("No model name given.");
+						System.out.println("Starting model build with options from 'config.txt' and default name.");
+						new ModelBuilder().buildModel("model-" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date()));
+					}else { 
+						System.out.println("Starting model build with options from 'config.txt' and name '" + args[1] + "'."); 
+						new ModelBuilder().buildModel(args[1]);
+					}
+					
+					break;
+				case "-p":
+					System.out.println("Prediction mode selected.");
+					
+					if(args.length == 1) {
+						System.out.println("No text was given");
+						System.out.println("Reminder! Text has to go inbetween \" \".");
+					}else {
+						System.out.println("Supplied text: " + args[1]);
+						System.out.println("Predicting text language level using 'config.txt' values.");
+						Analyzer.getPrediction(Analyzer.getNgramString(args[1]), false);
+					}
+					break;
+				default:
+					System.out.println("Incorrect arguments.");
+					break;
+			}
+		}else {
+			System.out.println("No arguments present.");
+			System.out.println("API mode selected. Starting server.");
+			Requests.initServer();
+		}
 	}
 	
 	

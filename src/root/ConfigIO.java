@@ -2,10 +2,13 @@ package root;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ConfigIO {
 	
@@ -79,8 +82,24 @@ public class ConfigIO {
 			
 			updateMap();
 			writeConfig(true);
+			System.out.println("Config written. Look for 'config.txt' in the folder the program was executed in to review options.");
+			System.out.println("Exiting program.");
+			System.exit(0);
 		}
 		
 		try {reader.close();} catch (IOException e) {}
+	}
+	
+	public static String[] listItemsInDir(String dir) {
+		
+		List<String> files = new ArrayList<String>();
+		File[] listOfFiles = new File(dir).listFiles();
+		
+		for(File file : listOfFiles) { files.add(file.getName()); }
+		
+		String[] filesArr = new String[files.size()];
+		filesArr = files.toArray(filesArr);
+		
+		return filesArr;
 	}
 }

@@ -4,7 +4,7 @@ public class Config {
 	
 	// default prediction vars
 	private static String activeModel = "models/file.model";
-
+	
 	// default string to word vector filter vars
 	private static boolean tf = true;
 	private static boolean idf = true;

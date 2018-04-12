@@ -39,7 +39,7 @@ public class ModelBuilder {
 
 			//select which attribtue is model going to be predicting. here its selecting the last column
 			trainingData.setClassIndex(trainingData.numAttributes() - 1);
-
+			
 			// transform strings into word vectors
 			StringToWordVector filter = new StringToWordVector();
 			filter.setTFTransform(Config.isTf());
@@ -50,7 +50,7 @@ public class ModelBuilder {
 			filter.setAttributeIndices(Config.getAttributeIndices());
 			filter.setInputFormat(trainingData);
 			System.out.println("[" + dateFormat.format(new Date()) + "]" + " Filter set.");
-
+			
 			MultilayerPerceptron mlp = new MultilayerPerceptron();
 			mlp.setHiddenLayers(Config.getHiddenLayers());
 			mlp.setLearningRate(Config.getLearningRate());

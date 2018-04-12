@@ -1,5 +1,7 @@
 package root.analyzer;
 
+import java.text.DecimalFormat;
+
 import root.Config;
 import root.preprocessor.CreateDataToPredict;
 
@@ -11,26 +13,36 @@ import weka.core.SerializationHelper;
 // https://stackoverflow.com/questions/23275600/cant-predicted-the-class-with-weka-using-java-code
 
 public class GetPrediction {
-	public String predict(String text) {
-		
-		String predictionStr = "<pre>";
+	public String predict(String text, boolean html) {
+		String predictionStr = "";
 		
 		try {
 			Classifier cls = (Classifier) SerializationHelper.read(System.getProperty("user.dir") + Config.getActiveModel());
 			Instance testInstance = CreateDataToPredict.createData(text);
 
 			double[] prediction = cls.distributionForInstance(testInstance);
+			double percentage = 0.0;
 			
-			for(int i = 0; i < prediction.length; i = i+1){
-				System.out.println(testInstance.classAttribute().value(i) + " keeletaseme tõenäosus on: "+ Double.toString(prediction[i]) + "\n");
-				predictionStr += testInstance.classAttribute().value(i) + " keeletaseme tõenäosus on: "+ Double.toString(prediction[i]) + "<br>";
+			for(int i = 0; i < prediction.length; i++) {
+				percentage += prediction[i];
 			}
+			
+			if(html) {
+				for(int i = 0; i < prediction.length; i = i+1){
+					predictionStr += testInstance.classAttribute().value(i) + " keeletaseme tõenäosus on: "+ new DecimalFormat("#.00").format(prediction[i] / percentage * 100) + "%.<br>";
+				}
+			} else {
+				for(int i = 0; i < prediction.length; i = i+1){
+					System.out.println(testInstance.classAttribute().value(i) + " keeletaseme tõenäosus on: "+ new DecimalFormat("#.00").format(prediction[i] / percentage * 100) + "%.");
+				}
+			}
+			
 
 		} catch (Exception e) {
 			System.out.println("Something wrong with the prediction");
 			e.printStackTrace();
 		}
-		predictionStr += "</pre>";
+		
 		return predictionStr;
 	}	
 }
