@@ -2,6 +2,9 @@ package root;
 
 public class Config {
 	
+	// default server vars
+	private static int port = 4568;
+	
 	// default prediction vars
 	private static String activeModel = "models/file.model";
 	
@@ -22,6 +25,7 @@ public class Config {
 	private static String trainingData = "/arff/keeletase_ja_ngramid.arff";
 	
 	// getters
+	public static int getPort() {                   return port;}
 	public static boolean isTf() {                  return tf;}
 	public static boolean isIdf() {                 return idf;}
 	public static double getMomentum() {            return momentum;}
@@ -37,6 +41,7 @@ public class Config {
 	public static boolean isNormalizeAttributes() { return normalizeAttributes;}
 	
 	// setters
+	public static void setPort(int port) { 							        Config.port = port; }
 	public static void setTf(String tf) {                                   Config.tf = Boolean.parseBoolean(tf);                                   ConfigIO.writeConfig(true);}
 	public static void setIdf(String idf) {                                 Config.idf = Boolean.parseBoolean(idf);                                 ConfigIO.writeConfig(true);}
 	public static void setMomentum(String momentum) {                       Config.momentum = Double.parseDouble(momentum);                         ConfigIO.writeConfig(true);}

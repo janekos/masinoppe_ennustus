@@ -1,6 +1,6 @@
 attributeIndices = first-last
 outputWordCounts = true
-trainingData = /arff/neli_keeletaset_ngramidega.arff
+trainingData = /arff/asd.arff
 normalizeAttributes = false
 idf = true
 hiddenLayers = 7

@@ -25,7 +25,7 @@ public class TextToNgram {
 			ngramsString += ngram + " ";
 		}
 		
-		ngramsString = ngramsString.substring(0, ngramsString.length() - 1); // takes the lase space away from ngramsString
+		ngramsString = ngramsString.substring(0, ngramsString.length() - 1); // takes the last space away from ngramsString
 		
 		return ngramsString;
 	}
