@@ -19,26 +19,27 @@ public class Requests {
 		
 		path("/api", () -> {
 		    //before("/*", (q, a) -> System.out.println("got a call"));
-		    get("/predict/:tekst", (req, res) -> {          return Analyzer.getPrediction(Analyzer.getNgramString(req.params(":tekst")), true); });
-		    get("/listArffs", (res, req) -> {               return Arrays.toString(ConfigIO.listItemsInDir("arff")); });
-	    	get("/listModels", (res, req) -> {              return Arrays.toString(ConfigIO.listItemsInDir("models")); });
-	    	get("/buildModel/:modelName", (req, res) -> {   return new ModelBuilder().buildModel(req.params(":modelName")); });
-	    	get("/buildModel", (req, res) -> {              return new ModelBuilder().buildModel("model-" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date())); });
+		    get("/predictNgram/:tekst", (req, res) -> {       return Analyzer.getPrediction(Analyzer.getNgramString(req.params(":tekst")), true); });
+		    get("/predictText/:tekst", (req, res) -> {        return Analyzer.getPrediction(req.params(":tekst"), true); });
+		    get("/listArffs", (res, req) -> {                 return Arrays.toString(ConfigIO.listItemsInDir("arff")); });
+	    	get("/listModels", (res, req) -> {                return Arrays.toString(ConfigIO.listItemsInDir("models")); });
+	    	get("/buildModelgram/:modelName", (req, res) -> { return new ModelBuilder().buildModel(req.params(":modelName")); });
+	    	get("/buildModel", (req, res) -> {                return new ModelBuilder().buildModel("model-" + new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date())); });
 	    	
 	    	path("/config/get", () -> {
-	    		get("/tf", (req, res) -> {                  return Config.isTf(); });
-		    	get("/idf", (req, res) -> {                 return Config.isIdf(); });
-		    	get("/momentum", (req, res) -> {            return Config.getMomentum(); });
-		    	get("/wordsToKeep", (req, res) -> {         return Config.getWordsToKeep(); });
-		    	get("/activeModel", (req, res) -> {         return Config.getActiveModel(); });
-		    	get("/trainingData", (req, res) -> {        return Config.getTrainingData(); });
-		    	get("/hiddenLayers", (req, res) -> {        return Config.getHiddenLayers(); });
-		    	get("/trainingTime", (req, res) -> {        return Config.getTrainingTime(); });
-		    	get("/learningRate", (req, res) -> {        return Config.getLearningRate(); });
-		    	get("/lowerCaseTokens", (req, res) -> {     return Config.isLowerCaseTokens(); });
-		    	get("/outputWordCounts", (req, res) -> {    return Config.isOutputWordCounts(); });
-		    	get("/attributeIndices", (req, res) -> {    return Config.getAttributeIndices(); });
-		    	get("/normalizeAttributes", (req, res) -> { return Config.isNormalizeAttributes(); });
+	    		get("/tf", (req, res) -> {                    return Config.isTf(); });
+		    	get("/idf", (req, res) -> {                   return Config.isIdf(); });
+		    	get("/momentum", (req, res) -> {              return Config.getMomentum(); });
+		    	get("/wordsToKeep", (req, res) -> {           return Config.getWordsToKeep(); });
+		    	get("/activeModel", (req, res) -> {           return Config.getActiveModel(); });
+		    	get("/trainingData", (req, res) -> {          return Config.getTrainingData(); });
+		    	get("/hiddenLayers", (req, res) -> {          return Config.getHiddenLayers(); });
+		    	get("/trainingTime", (req, res) -> {          return Config.getTrainingTime(); });
+		    	get("/learningRate", (req, res) -> {          return Config.getLearningRate(); });
+		    	get("/lowerCaseTokens", (req, res) -> {       return Config.isLowerCaseTokens(); });
+		    	get("/outputWordCounts", (req, res) -> {      return Config.isOutputWordCounts(); });
+		    	get("/attributeIndices", (req, res) -> {      return Config.getAttributeIndices(); });
+		    	get("/normalizeAttributes", (req, res) -> {   return Config.isNormalizeAttributes(); });
 		    });
 	    	
 	    	path("/config/update", () -> {
