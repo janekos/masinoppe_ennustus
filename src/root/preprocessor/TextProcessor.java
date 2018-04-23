@@ -1,13 +1,13 @@
-package root.analyzer;
+package root.preprocessor;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class TextToNgram {
+public class TextProcessor {
 
-	public String createNgrams(String text) {
+	public static String createNgrams(String text) {
 		
 		int ngramLen = 3;
 		
@@ -30,7 +30,7 @@ public class TextToNgram {
 		return ngramsString;
 	}
 
-	public String[] getWordTypesFromText(String text){
+	public static String[] getWordTypesFromText(String text){
 
 		String[] wordTypes = null;
 		String s = null;

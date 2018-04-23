@@ -2,13 +2,14 @@ package root;
 
 import root.online.Requests;
 import root.preprocessor.ModelBuilder;
+import root.preprocessor.TextProcessor;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import root.analyzer.Analyzer;
+import root.analyzer.GetPrediction;
 
 public class Main {
 
@@ -59,7 +60,7 @@ public class Main {
 					} else {
 						if(sysout) {System.out.println("Supplied text: " + args[1]);}
 						if(sysout) {System.out.println("Predicting text language level using 'config.txt' values.");}
-						Analyzer.getPrediction(Analyzer.getNgramString(args[1]), false);
+						GetPrediction.predict(TextProcessor.createNgrams(args[1]), false);
 					}
 					break;
 					
@@ -72,7 +73,7 @@ public class Main {
 					} else {
 						if(sysout) {System.out.println("Supplied text: " + args[1]);}
 						if(sysout) {System.out.println("Predicting text language level using 'config.txt' values.");}
-						Analyzer.getPrediction(args[1], false);
+						GetPrediction.predict(args[1], false);
 					}
 					break;
 					

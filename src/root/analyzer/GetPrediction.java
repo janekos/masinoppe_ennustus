@@ -13,7 +13,7 @@ import weka.core.SerializationHelper;
 // https://stackoverflow.com/questions/23275600/cant-predicted-the-class-with-weka-using-java-code
 
 public class GetPrediction {
-	public String predict(String text, boolean html) {
+	public static String predict(String text, boolean html) {
 		String predictionStr = "";
 		
 		try {

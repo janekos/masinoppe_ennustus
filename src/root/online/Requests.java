@@ -8,8 +8,9 @@ import java.util.Date;
 
 import root.Config;
 import root.ConfigIO;
-import root.analyzer.Analyzer;
+import root.analyzer.GetPrediction;
 import root.preprocessor.ModelBuilder;
+import root.preprocessor.TextProcessor;
 
 public class Requests {
 	
@@ -19,8 +20,8 @@ public class Requests {
 		
 		path("/api", () -> {
 		    //before("/*", (q, a) -> System.out.println("got a call"));
-		    get("/predictNgram/:tekst", (req, res) -> {       return Analyzer.getPrediction(Analyzer.getNgramString(req.params(":tekst")), true); });
-		    get("/predictText/:tekst", (req, res) -> {        return Analyzer.getPrediction(req.params(":tekst"), true); });
+		    get("/predictNgram/:tekst", (req, res) -> {       return GetPrediction.predict(TextProcessor.createNgrams(req.params(":tekst")), true); });
+		    get("/predictText/:tekst", (req, res) -> {        return GetPrediction.predict(req.params(":tekst"), true); });
 		    get("/listArffs", (res, req) -> {                 return Arrays.toString(ConfigIO.listItemsInDir("arff")); });
 	    	get("/listModels", (res, req) -> {                return Arrays.toString(ConfigIO.listItemsInDir("models")); });
 	    	get("/buildModelgram/:modelName", (req, res) -> { return new ModelBuilder().buildModel(req.params(":modelName")); });
